@@ -22,4 +22,22 @@ class SongRepositoryMock implements SongRepository {
       );
     });
   }
+  
+  @override
+  Future<Song> likeSong(String songId) async {
+    return Future.delayed(Duration(seconds: 1), () {
+      final song = _songs.firstWhere(
+        (song) => song.id == songId,
+        orElse: () => throw Exception("No song with id $songId in the database"),
+      );
+      return Song(
+        id: song.id,
+        title: song.title,
+        artistId: song.artistId,
+        duration: song.duration,
+        imageUrl: song.imageUrl,
+        likes: song.likes + 1,
+      );
+    });
+  }
 }

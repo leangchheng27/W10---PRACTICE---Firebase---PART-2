@@ -14,6 +14,8 @@ class LibraryViewModel extends ChangeNotifier {
   final PlayerState playerState;
 
   AsyncValue<List<LibraryItemData>> data = AsyncValue.loading();
+  Exception? likeError; 
+
 
   LibraryViewModel({
     required this.songRepository,
@@ -66,6 +68,26 @@ class LibraryViewModel extends ChangeNotifier {
     } catch (e) {
       // 3- Fetch is unsucessfull
       data = AsyncValue.error(e);
+    }
+    notifyListeners();
+  }
+
+    void likeSong(Song song) async {
+    try {
+      final updatedSong = await songRepository.likeSong(song.id);
+
+      final currentData = data.data!;
+      final updatedList = currentData.map((item) {
+        if (item.song.id == updatedSong.id) {
+          return LibraryItemData(song: updatedSong, artist: item.artist);
+        }
+        return item;
+      }).toList();
+
+      data = AsyncValue.success(updatedList);
+      likeError = null;
+    } catch (e) {
+      likeError = e as Exception;
     }
     notifyListeners();
   }
