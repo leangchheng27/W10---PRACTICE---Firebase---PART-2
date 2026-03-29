@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../model/artist/artist.dart';
+import '../../screens/artists/artist_screen.dart';
 
 class ArtistTile extends StatelessWidget {
   const ArtistTile({
@@ -20,6 +21,14 @@ class ArtistTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         child: ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ArtistScreen(artist: artist),
+              ),
+            );
+          },
           title: Text(artist.name),
           subtitle: Text("Genre: ${artist.genre}"),
           leading: CircleAvatar(

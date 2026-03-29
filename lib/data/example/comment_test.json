@@ -1,0 +1,24 @@
+{
+  "comments": {
+    "comment_1": {
+      "artistId": "artist_1",
+      "text": "VannDa is the best Khmer rapper!"
+    },
+    "comment_2": {
+      "artistId": "artist_1",
+      "text": "Time to Rise is a banger!"
+    },
+    "comment_3": {
+      "artistId": "artist_2",
+      "text": "Tena's voice is so beautiful!"
+    },
+    "comment_4": {
+      "artistId": "artist_3",
+      "text": "G-Devith never misses!"
+    },
+    "comment_5": {
+      "artistId": "artist_4",
+      "text": "Sokun Nisa is a legend!"
+    }
+  }
+}

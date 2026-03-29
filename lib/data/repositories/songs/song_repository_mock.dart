@@ -5,11 +5,17 @@ import 'song_repository.dart';
 
 class SongRepositoryMock implements SongRepository {
   final List<Song> _songs = [  ];
+  List<Song>? _cachedSongs;
 
   @override
-  Future<List<Song>> fetchSongs() async {
+  Future<List<Song>> fetchSongs({bool forceFetch = false}) async {
+    if (!forceFetch && _cachedSongs != null) {
+      return _cachedSongs!;
+    }
+    
     return Future.delayed(Duration(seconds: 4), () {
-      throw _songs;
+      _cachedSongs = _songs;
+      return _songs;
     });
   }
 
